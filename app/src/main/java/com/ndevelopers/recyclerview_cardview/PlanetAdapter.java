@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetHolder>{
 
@@ -31,6 +32,13 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetHold
             txtGravity = itemView.findViewById(R.id.txtGravity);
             txtDiameter = itemView.findViewById(R.id.txtDiameter);
         }
+
+        public void setDetails(Planet planet) {
+            txtName.setText(planet.getPlanetName());
+            txtDistance.setText(String.format(Locale.US, "Distance from Sun : %d Million KM", planet.getDistanceFromSun()));
+            txtGravity.setText(String.format(Locale.US, "Surface Gravity : %d N/kg", planet.getGravity()));
+            txtDiameter.setText(String.format(Locale.US, "Diameter : %d KM", planet.getDiameter()));
+        }
     }
 
 
@@ -44,7 +52,8 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetHold
 
     @Override
     public void onBindViewHolder(@NonNull PlanetHolder planetHolder, int i) {
-
+        Planet planet = planets.get(i);
+        planetHolder.setDetails(planet);
     }
 
     @Override
