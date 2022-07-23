@@ -1,6 +1,8 @@
 package com.ndevelopers.recyclerview_cardview;
 
-public class Planet {
+import java.io.Serializable;
+
+public class Planet implements Serializable {
 
     private String planetName;
     private int distanceFromSun;
